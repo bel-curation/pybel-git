@@ -23,5 +23,5 @@ Currently, the build doesn't use a cached resource file, so this job
 might take a long time. The `travis_wait <https://docs.travis-ci.
 com/user/common-build-problems/#build-times-out-because-no-output-
 was-received>`_ command can be used so the script reads
-`travis_wait 30 pybel-git ci` and the job will be allowed to run for
+``travis_wait 30 pybel-git ci`` and the job will be allowed to run for
 thirty (30) minutes.
