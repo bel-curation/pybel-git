@@ -28,14 +28,10 @@ def main():
 @connection_option
 def ci(directory: str, connection: str):
     """Run in continuous integration setting."""
-    click.echo(f'{EMOJI} checking directory: {directory}')
-
     repo = Repo(directory)
-    head_commit = repo.git.rev_parse('HEAD')
-    click.echo(f'{EMOJI} head commit: {head_commit}')
-
     file_names = get_changed(repo)
     if not file_names:
+        click.secho(f'{EMOJI} no BEL files changed')
         sys.exit(0)
 
     manager = Manager(connection=connection)
@@ -45,5 +41,9 @@ def ci(directory: str, connection: str):
         graph = from_path(file_name, manager=manager)
         if graph.warnings:
             failures.append(graph)
+        click.echo(f'{EMOJI} done checking: {file_name}')
+
+    for failure in failures:
+        click.secho(f'failed: {failure}', fg='red')
 
     sys.exit(1 if failures else 0)
