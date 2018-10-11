@@ -27,3 +27,24 @@ was-received>`_ command can be used so the script reads
 thirty (30) minutes.
 
 An example can be found at https://github.com/cthoyt/pybel-git-test.
+
+Interfacing with GitLab
+-----------------------
+PyBEL-Git contains extra scripts to assist in automatic checking and feedback
+for projects residing in GitLab that are using the Git Flow workflow of branching
+and making merge requests.
+
+This script checks each branch, compiles the BEL documents that have changed
+compared to master, and puts comments on the merge request with the warnings
+and feedback on the syntactic and semantic correctness of the BEL files.
+
+It can be run with:
+
+.. code-block:: bash
+
+	pybel-git ci_gitlab \
+	    --url "https://gitlab.scai.fraunhofer.de"  # the url of the desired gitlab instance \
+	    --project-id 449  # the gitlab project id, shown at the top of the page for the repository \
+
+This script uses `EasyConfig <https://github.com/scolby33/easy_config>`_ and can also be configured
+via the environment using ``GITLAB_URL``, ``GITLAB_PROJECT_ID``, and ``GITLAB_TOKEN``.
