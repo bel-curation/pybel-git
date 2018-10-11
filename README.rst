@@ -25,3 +25,5 @@ com/user/common-build-problems/#build-times-out-because-no-output-
 was-received>`_ command can be used so the script reads
 ``travis_wait 30 pybel-git ci`` and the job will be allowed to run for
 thirty (30) minutes.
+
+An example can be found at https://github.com/cthoyt/pybel-git-test.
