@@ -7,7 +7,7 @@ Using Travis-CI
 To configure Travis-CI to evaluate the changed BEL files in a GitHub
 repository on each commit, the following travis.yml file can be used:
 
-.. code-block::yaml
+.. code-block:: yaml
 
 	sudo: false
 	cache: pip
