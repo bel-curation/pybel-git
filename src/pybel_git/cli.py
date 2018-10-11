@@ -57,11 +57,18 @@ def ci(directory: str, connection: str):
 @click.option('-d', '--directory', default=os.getcwd(), type=click.Path(file_okay=False, dir_okay=True),
               help='Directory of git repository')
 @connection_option
-def ci_gitlab(directory: str, connection: str):
+@click.option('--project-id', type=int)
+@click.option('--url')
+@click.option('--token')
+def ci_gitlab(directory: str, connection: str, project_id: int, url: str, token: str):
     """Run in a continuous integration setting with communication to GitLab."""
     from pybel_git.gitlab import GitlabConfig, gitlab_feedback
 
-    gitlab_config = GitlabConfig.load()
+    gitlab_config = GitlabConfig.load(
+        project_id=project_id,
+        url=url,
+        token=token,
+    )
     project = gitlab_config.get_project()
     repo = Repo(directory)
     manager = Manager(connection=connection)

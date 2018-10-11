@@ -30,7 +30,7 @@ class GitlabConfig(EasyConfig):
 
     project_id: int
     url: str
-    token: str  # will look up GITLAB_TOKEN from the environment
+    token: str
 
     def get_gitlab(self) -> Gitlab:
         """Get a Gitlab instance using this configuration."""
