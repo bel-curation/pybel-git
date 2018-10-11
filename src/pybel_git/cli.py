@@ -35,15 +35,19 @@ def ci(directory: str, connection: str):
         sys.exit(0)
 
     manager = Manager(connection=connection)
+    
     failures = []
     for file_name in file_names:
         click.echo(f'{EMOJI} file changed: {file_name}')
         graph = from_path(file_name, manager=manager)
         if graph.warnings:
-            failures.append(graph)
+            failures.append((file_name, graph))
         click.echo(f'{EMOJI} done checking: {file_name}')
 
-    for failure in failures:
-        click.secho(f'failed: {failure}', fg='red')
+    if not failures:
+        sys.exit(0)
 
-    sys.exit(1 if failures else 0)
+    click.echo('')
+    for file_name, graph in failures:
+        click.secho(f'failed: {file_name} - {graph}', fg='red')
+    sys.exit(1)
