@@ -47,4 +47,6 @@ It can be run with:
 	    --project-id 449  # the gitlab project id, shown at the top of the page for the repository \
 
 This script uses `EasyConfig <https://github.com/scolby33/easy_config>`_ and can also be configured
-via the environment using ``GITLAB_URL``, ``GITLAB_PROJECT_ID``, and ``GITLAB_TOKEN``.
+via the environment variables ``GITLAB_URL``, ``GITLAB_PROJECT_ID``, and ``GITLAB_TOKEN``.
+
+TO-DO: using continuous integration with GitLab, especially in private settings (such as Jenkins)
