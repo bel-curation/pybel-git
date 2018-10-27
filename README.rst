@@ -2,10 +2,12 @@ pybel-git
 =========
 Git and continuous integration tools for PyBEL.
 
-Using Travis-CI
----------------
-To configure Travis-CI to evaluate the changed BEL files in a GitHub
-repository on each commit, the following travis.yml file can be used:
+Using GitHub and Travis-CI
+--------------------------
+To configure `Travis-CI <https://travis-ci.com>`_ to evaluate the 
+BEL files that have changed in the latest commit to a in a GitHub 
+repository on each commit, the following ``travis.yml`` file can 
+be used:
 
 .. code-block:: yaml
 
@@ -28,8 +30,29 @@ thirty (30) minutes.
 
 An example can be found at https://github.com/cthoyt/pybel-git-test.
 
-Interfacing with GitLab
------------------------
+Using GitLab with GitLab CI/CD
+------------------------------
+To configure `GitLab CI/CD <https://docs.gitlab.com/ee/ci>`_ to 
+evaluate the BEL files that have changed in the latest commit to
+a GitLab repository, the following ``.gitlab-ci.yml`` can be used:
+
+.. code-block:: yaml
+
+   test:
+     image: python:3.6
+     script:
+     - pip install git+https://github.com/cthoyt/pybel-git
+     - pybel-git ci
+
+As with GitHub/Travis-CI, this configuration does not use a cached
+resource file. GitLab CI/CD doesn't seem to offer a wait time, but
+it might also not have an issue with timing out, either.
+
+An example can be found at https://gitlab.com/cthoyt/pybel-gitlab-example
+
+
+Deeper Integration with GitLab
+------------------------------
 PyBEL-Git contains extra scripts to assist in automatic checking and feedback
 for projects residing in GitLab that are using the Git Flow workflow of branching
 and making merge requests.
@@ -48,5 +71,3 @@ It can be run with:
 
 This script uses `EasyConfig <https://github.com/scolby33/easy_config>`_ and can also be configured
 via the environment variables ``GITLAB_URL``, ``GITLAB_PROJECT_ID``, and ``GITLAB_TOKEN``.
-
-TO-DO: using continuous integration with GitLab, especially in private settings (such as Jenkins)
