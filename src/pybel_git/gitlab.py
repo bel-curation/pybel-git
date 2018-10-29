@@ -87,10 +87,10 @@ def gitlab_feedback(project: Project, repo: Repo, manager: Manager):
                 mr.save()
 
                 if unused_annotations:
-                    comment_unused(mr, unused_annotations, 'Unused Annotations')
+                    comment_unused(mr, unused_annotations, 'Annotations')
 
                 if unused_namespaces:
-                    comment_unused(mr, unused_namespaces, 'Unused Namespaces')
+                    comment_unused(mr, unused_namespaces, 'Namespaces')
 
                 continue
 
