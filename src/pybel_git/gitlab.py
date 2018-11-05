@@ -4,6 +4,7 @@
 
 import logging
 from io import StringIO
+from typing import Optional, Set
 
 import click
 from easy_config import EasyConfig
@@ -44,9 +45,30 @@ class GitlabConfig(EasyConfig):
         return project
 
 
-def gitlab_feedback(project: Project, repo: Repo, manager: Manager):
+def gitlab_feedback(
+        project: Project,
+        repo: Repo,
+        manager: Manager,
+        skip: Optional[Set[str]] = None,
+        automerge: bool = False
+):
+    """Get feedback for all branches in the project.
+
+    Warning: modifies the git repository in place.
+
+    :param project:
+    :param repo:
+    :param manager:
+    :param skip:
+    :param automerge:
+    :return:
+    """
     for mr in project.mergerequests.list():
         bname = f'origin/{mr.source_branch}'
+
+        if skip and mr.title in skip:
+            click.secho(f'Skipping {bname}: {mr.title}', fg='yellow')
+            continue
 
         if mr.title.startswith('WIP:'):
             click.secho(f'WIP      {bname}: {mr.title}', fg='yellow')
@@ -91,6 +113,9 @@ def gitlab_feedback(project: Project, repo: Repo, manager: Manager):
 
                 if unused_namespaces:
                     comment_unused(mr, unused_namespaces, 'Namespaces')
+
+                if automerge:
+                    mr.merge()
 
                 continue
 
