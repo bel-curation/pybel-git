@@ -6,8 +6,6 @@ python:
 stages:
   - lint
   - docs
-env:
-  - TOXENV=py
 jobs:
   include:
     # lint stage
