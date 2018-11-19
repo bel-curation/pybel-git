@@ -1,5 +1,5 @@
-pybel-git
-=========
+PyBEL-Git |build| |zenodo|
+==========================
 Git and continuous integration tools for PyBEL to assist in curating BEL.
 
 Using GitHub and Travis-CI
@@ -71,3 +71,9 @@ It can be run with:
 
 This script uses `EasyConfig <https://github.com/scolby33/easy_config>`_ and can also be configured
 via the environment variables ``GITLAB_URL``, ``GITLAB_PROJECT_ID``, and ``GITLAB_TOKEN``.
+
+.. |build| image:: https://travis-ci.com/pybel/pybel-git.svg?branch=master
+    :target: https://travis-ci.com/pybel/pybel-git
+
+.. |zenodo| image:: https://zenodo.org/badge/152552674.svg
+   :target: https://zenodo.org/badge/latestdoi/152552674
