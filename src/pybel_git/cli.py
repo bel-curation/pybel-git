@@ -17,7 +17,7 @@ EMOJI = '🔔'
 
 @click.group()
 def main():
-    """PyBEL Git utilities."""
+    """Git utilities for PyBEL."""
 
 
 # TODO download pre-built cache?

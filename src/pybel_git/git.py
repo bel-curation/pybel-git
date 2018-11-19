@@ -2,7 +2,7 @@
 
 """Git utilities."""
 
-from typing import List, Optional
+from typing import Iterable, List, Optional
 
 from git import Repo
 
@@ -22,18 +22,22 @@ def get_changed(repo: Repo) -> List[str]:
 
 
 def get_bel(repo: Repo, branch: str, manager: Optional[Manager] = None, use_tqdm: bool = False) -> BELGraph:
-    lines = get_bel_lines(repo, branch)
+    """Get the BEL graph for the first BEL document found."""
+    line_groups = list(get_bel_lines(repo, branch))
+    lines = line_groups[0]
     return from_lines(lines, manager=manager, use_tqdm=use_tqdm)
 
 
-def get_bel_lines(repo: Repo, branch: str) -> List[str]:
+def get_bel_lines(repo: Repo, branch: str) -> Iterable[List[str]]:
+    """Yield the list of lines from each BEL file in the given branch."""
     for file_name in get_changed_from_master(repo, branch):
         if file_name.endswith('.bel'):
-            return _get_bel_lines(repo, branch, file_name)
+            yield _get_bel_lines(repo, branch, file_name)
 
 
-def get_changed_from_master(repo: Repo, other_branch_name: str) -> List[str]:
-    commit_something = repo.git.merge_base(other_branch_name, 'origin/master')
+def get_changed_from_master(repo: Repo, other_branch_name: str, master_branch_name: str = 'origin/master') -> List[str]:
+    """List all files differing between the master and given branch."""
+    commit_something = repo.git.merge_base(other_branch_name, master_branch_name)
     return repo.git.diff('--name-only', other_branch_name, commit_something).split('\n')
 
 

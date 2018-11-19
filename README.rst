@@ -1,6 +1,6 @@
 pybel-git
 =========
-Git and continuous integration tools for PyBEL.
+Git and continuous integration tools for PyBEL to assist in curating BEL.
 
 Using GitHub and Travis-CI
 --------------------------

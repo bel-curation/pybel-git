@@ -4,7 +4,7 @@
 
 import logging
 from io import StringIO
-from typing import Optional, Set
+from typing import Iterable, Optional, Set
 
 import click
 from easy_config import EasyConfig
@@ -45,7 +45,7 @@ class GitlabConfig(EasyConfig):
         return project
 
 
-def gitlab_feedback(
+def gitlab_feedback(  # noqa: C901
         project: Project,
         repo: Repo,
         manager: Manager,
@@ -150,11 +150,12 @@ def gitlab_feedback(
         click.echo('')
 
 
-def comment_unused(mr, unused_namespaces, title):
+def comment_unused(mr, unused_terminologies: Iterable[str], title: str):
+    """Add a comment to a given merge request based on the unused terminologies given."""
     sio = StringIO()
     print(f'## Unused {title}\n', file=sio)
     print('```', file=sio)
-    for namespace in sorted(unused_namespaces):
+    for namespace in sorted(unused_terminologies):
         print(namespace, file=sio)
     print('```', file=sio)
 
