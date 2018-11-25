@@ -17,7 +17,7 @@ be used:
 	python:
 	- 3.6
 	install:
-	- pip install git+https://github.com/cthoyt/pybel-git
+	- pip install pybel-git
 	script:
 	- pybel-git ci
 
@@ -41,7 +41,7 @@ a GitLab repository, the following ``.gitlab-ci.yml`` can be used:
    test:
      image: python:3.6
      script:
-     - pip install git+https://github.com/cthoyt/pybel-git
+     - pip install pybel-git
      - pybel-git ci
 
 As with GitHub/Travis-CI, this configuration does not use a cached
