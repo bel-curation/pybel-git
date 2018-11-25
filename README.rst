@@ -48,8 +48,28 @@ As with GitHub/Travis-CI, this configuration does not use a cached
 resource file. GitLab CI/CD doesn't seem to offer a wait time, but
 it might also not have an issue with timing out, either.
 
-An example can be found at https://gitlab.com/cthoyt/pybel-gitlab-example
+An example can be found at https://gitlab.com/cthoyt/pybel-gitlab-example.
 
+Using Atlassian BitBucket with Bitbucket Pipelines
+--------------------------------------------------
+To configure a BitBucket Pipelines to evaluate BEL files that have 
+been changed in the latest commit to a BitBucket repository, the 
+following ``bitbucket-pipelines.yml`` ca be used:
+
+.. code-block:: yaml
+
+   image: python:3.6
+
+   pipelines:
+     default:
+       - step:
+           caches:
+             - pip
+           script: 
+             - pip install pybel-git
+             - pybel-git ci
+
+An example can be found at https://bitbucket.org/pybel/pybel-bitbucket-example.
 
 Deeper Integration with GitLab
 ------------------------------
