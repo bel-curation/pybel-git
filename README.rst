@@ -28,7 +28,8 @@ was-received>`_ command can be used so the script reads
 ``travis_wait 30 pybel-git ci`` and the job will be allowed to run for
 thirty (30) minutes.
 
-An example can be found at https://github.com/cthoyt/pybel-git-test.
+An example repository can be found at https://github.com/cthoyt/pybel-git-test.
+An example build for this repository can be found at https://travis-ci.com/cthoyt/pybel-git-test/builds/87612373.
 
 Using GitLab with GitLab CI/CD
 ------------------------------
@@ -48,7 +49,8 @@ As with GitHub/Travis-CI, this configuration does not use a cached
 resource file. GitLab CI/CD doesn't seem to offer a wait time, but
 it might also not have an issue with timing out, either.
 
-An example can be found at https://gitlab.com/cthoyt/pybel-gitlab-example.
+An example repository can be found at https://gitlab.com/cthoyt/pybel-gitlab-example.
+An example build for this repository can be found at https://gitlab.com/cthoyt/pybel-gitlab-example/-/jobs/113454179
 
 Using Atlassian BitBucket with Bitbucket Pipelines
 --------------------------------------------------
@@ -69,7 +71,8 @@ following ``bitbucket-pipelines.yml`` ca be used:
              - pip install pybel-git
              - pybel-git ci
 
-An example can be found at https://bitbucket.org/pybel/pybel-bitbucket-example.
+An example repository can be found at https://bitbucket.org/pybel/pybel-bitbucket-example.
+An example build for this repository can be found at https://bitbucket.org/pybel/pybel-bitbucket-example/addon/pipelines/home#!/results/2.
 
 Deeper Integration with GitLab
 ------------------------------
