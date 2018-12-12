@@ -43,9 +43,14 @@ def ci(directory: str, connection: str, required_annotations: List[str]):
     for file_name in file_names:
         click.echo(f'{EMOJI} file changed: {file_name}')
         graph = from_path(file_name, manager=manager, required_annotations=required_annotations)
+        fg_color = 'green'
         if graph.warnings:
             failures.append((file_name, graph))
-        click.echo(f'{EMOJI} done checking: {file_name}')
+            fg_color = 'red'
+
+        click.secho(f'{EMOJI} done checking: {file_name}', fg=fg_color)
+        click.echo(graph.summary_str())
+
     if not failures:
         sys.exit(0)
 
