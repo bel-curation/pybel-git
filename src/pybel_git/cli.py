@@ -4,6 +4,7 @@
 
 import os
 import sys
+from typing import List
 
 import click
 from git import Repo
@@ -25,8 +26,9 @@ def main():
 @main.command()
 @click.option('-d', '--directory', default=os.getcwd(), type=click.Path(file_okay=False, dir_okay=True),
               help='Directory of git repository')
+@click.option('-r', '--required-annotations', multiple=True, help='Specify multiple required annotations')
 @connection_option
-def ci(directory: str, connection: str):
+def ci(directory: str, connection: str, required_annotations: List[str]):
     """Run in continuous integration setting."""
     repo = Repo(directory)
 
@@ -40,7 +42,7 @@ def ci(directory: str, connection: str):
     failures = []
     for file_name in file_names:
         click.echo(f'{EMOJI} file changed: {file_name}')
-        graph = from_path(file_name, manager=manager)
+        graph = from_path(file_name, manager=manager, required_annotations=required_annotations)
         if graph.warnings:
             failures.append((file_name, graph))
         click.echo(f'{EMOJI} done checking: {file_name}')
