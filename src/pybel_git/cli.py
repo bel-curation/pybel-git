@@ -4,6 +4,7 @@
 
 import os
 import sys
+import time
 from typing import List
 
 import click
@@ -42,13 +43,14 @@ def ci(directory: str, connection: str, required_annotations: List[str]):
     failures = []
     for file_name in file_names:
         click.echo(f'{EMOJI} file changed: {file_name}')
+        t = time.time()
         graph = from_path(file_name, manager=manager, required_annotations=required_annotations)
         fg_color = 'green'
         if graph.warnings:
             failures.append((file_name, graph))
             fg_color = 'red'
 
-        click.secho(f'{EMOJI} done checking: {file_name}', fg=fg_color)
+        click.secho(f'{EMOJI} done checking: {file_name} ({time.time() - t:.2f} seconds)', fg=fg_color)
         click.echo(graph.summary_str())
 
     if not failures:
