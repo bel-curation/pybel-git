@@ -2,6 +2,11 @@ PyBEL-Git |build| |zenodo|
 ==========================
 Git and continuous integration tools for PyBEL to assist in curating BEL.
 
+If you've found ``pybel-git`` useful in your work, please consider citing [1]_:
+
+.. [1] Hoyt, C. T., *et al* (2019). `Re-curation and Rational Enrichment of Knowledge Graphs in 
+       Biological Expression Language <https://doi.org/10.1101/536409>`_. *bioRxiv*, 536409. 
+
 Usage with Continuous Integration
 ---------------------------------
 Below are examples on using ``pybel-git`` within the configuration
