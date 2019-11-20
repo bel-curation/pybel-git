@@ -10,7 +10,7 @@ from typing import List
 import click
 from git import Repo
 
-from pybel import Manager, from_path
+from pybel import Manager, from_bel_script
 from pybel.cli import connection_option
 from pybel_git.git import get_changed
 
@@ -44,7 +44,7 @@ def ci(directory: str, connection: str, required_annotations: List[str]):
     for file_name in file_names:
         click.echo(f'{EMOJI} file changed: {file_name}')
         t = time.time()
-        graph = from_path(file_name, manager=manager, required_annotations=required_annotations)
+        graph = from_bel_script(file_name, manager=manager, required_annotations=required_annotations)
         fg_color = 'green'
         if graph.warnings:
             failures.append((file_name, graph))

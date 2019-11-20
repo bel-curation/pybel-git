@@ -6,7 +6,8 @@ from typing import Iterable, List, Optional
 
 from git import Repo
 
-from pybel import BELGraph, Manager, from_lines
+from pybel import BELGraph, Manager
+from pybel.io.line_utils import parse_lines
 
 
 def get_changed(repo: Repo) -> List[str]:
@@ -24,15 +25,17 @@ def get_changed(repo: Repo) -> List[str]:
 def get_bel(repo: Repo, branch: str, manager: Optional[Manager] = None, use_tqdm: bool = False) -> BELGraph:
     """Get the BEL graph for the first BEL document found."""
     line_groups = list(get_bel_lines(repo, branch))
-    lines = line_groups[0]
-    return from_lines(lines, manager=manager, use_tqdm=use_tqdm)
+    file_name, lines = line_groups[0]
+    graph = BELGraph(path=file_name)
+    parse_lines(graph=graph, lines=lines, manager=manager, use_tqdm=use_tqdm)
+    return graph
 
 
 def get_bel_lines(repo: Repo, branch: str) -> Iterable[List[str]]:
     """Yield the list of lines from each BEL file in the given branch."""
     for file_name in get_changed_from_master(repo, branch):
         if file_name.endswith('.bel'):
-            yield _get_bel_lines(repo, branch, file_name)
+            yield file_name, _get_bel_lines(repo, branch, file_name)
 
 
 def get_changed_from_master(repo: Repo, other_branch_name: str, master_branch_name: str = 'origin/master') -> List[str]:
