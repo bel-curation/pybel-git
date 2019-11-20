@@ -4,8 +4,8 @@ Git and continuous integration tools for PyBEL to assist in curating BEL.
 
 If you've found ``pybel-git`` useful in your work, please consider citing [1]_:
 
-.. [1] Hoyt, C. T., *et al* (2019). `Re-curation and Rational Enrichment of Knowledge Graphs in
-       Biological Expression Language <https://doi.org/10.1101/536409>`_. *bioRxiv*, 536409.
+.. [1] Hoyt, C. T., *et al*. (2019). `Re-curation and rational enrichment of knowledge graphs in Biological Expression
+       Language <https://doi.org/10.1093/database/baz068>`_. *Database*, 2019, baz068.
 
 Usage with Continuous Integration
 ---------------------------------
@@ -27,7 +27,7 @@ be used:
    cache: pip
    language: python
    python:
-     - 3.6
+     - '3.7'
    install:
      - pip install pybel-git
    script:
@@ -52,7 +52,7 @@ a GitLab repository, the following ``.gitlab-ci.yml`` can be used:
 .. code-block:: yaml
 
    test:
-     image: python:3.6
+     image: python:3.7
      script:
        - pip install pybel-git
        - pybel-git ci
@@ -72,7 +72,7 @@ following ``bitbucket-pipelines.yml`` ca be used:
 
 .. code-block:: yaml
 
-   image: python:3.6
+   image: python:3.7
 
    pipelines:
      default:
@@ -84,7 +84,8 @@ following ``bitbucket-pipelines.yml`` ca be used:
              - pybel-git ci
 
 An example repository can be found at https://bitbucket.org/pybel/pybel-bitbucket-example.
-An example build for this repository can be found at https://bitbucket.org/pybel/pybel-bitbucket-example/addon/pipelines/home#!/results/2.
+An example build for this repository can be found at
+https://bitbucket.org/pybel/pybel-bitbucket-example/addon/pipelines/home#!/results/2.
 
 Usage with Git Service and Continuous Integration
 -------------------------------------------------
