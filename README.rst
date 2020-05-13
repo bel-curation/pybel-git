@@ -40,8 +40,8 @@ was-received>`_ command can be used so the script reads
 ``travis_wait 30 pybel-git ci`` and the job will be allowed to run for
 thirty (30) minutes.
 
-An example repository can be found at https://github.com/cthoyt/pybel-git-test.
-An example build for this repository can be found at https://travis-ci.com/cthoyt/pybel-git-test/builds/87612373.
+An example repository can be found at https://github.com/bel-curation/pybel-git-test.
+An example build for this repository can be found at https://travis-ci.com/bel-curation/pybel-git-test/builds/87612373.
 
 Using GitLab with GitLab CI/CD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -110,8 +110,8 @@ It can be run with:
 This script uses `EasyConfig <https://github.com/scolby33/easy_config>`_ and can also be configured
 via the environment variables ``GITLAB_URL``, ``GITLAB_PROJECT_ID``, and ``GITLAB_TOKEN``.
 
-.. |build| image:: https://travis-ci.com/pybel/pybel-git.svg?branch=master
-    :target: https://travis-ci.com/pybel/pybel-git
+.. |build| image:: https://travis-ci.com/bel-curation/pybel-git.svg?branch=master
+    :target: https://travis-ci.com/bel-curation/pybel-git
 
 .. |zenodo| image:: https://zenodo.org/badge/152552674.svg
    :target: https://zenodo.org/badge/latestdoi/152552674
